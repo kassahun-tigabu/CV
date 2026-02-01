@@ -1,0 +1,550 @@
+/* ============================================
+   Europass-style CV - Professional Layout
+   ATS-friendly, international standards
+   ============================================ */
+
+/* ---------- CSS Custom Properties ---------- */
+:root {
+  --color-bg: #f8f9fa;
+  --color-paper: #ffffff;
+  --color-primary: #1e3a5f;
+  --color-primary-light: #2c5282;
+  --color-accent: #2563eb;
+  --color-text: #1a202c;
+  --color-text-muted: #4a5568;
+  --color-border: #e2e8f0;
+  --color-sidebar-bg: #1e3a5f;
+  --color-sidebar-text: #f7fafc;
+  --font-sans: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  --font-size-base: 16px;
+  --line-height: 1.5;
+  --spacing-xs: 0.25rem;
+  --spacing-sm: 0.5rem;
+  --spacing-md: 1rem;
+  --spacing-lg: 1.5rem;
+  --spacing-xl: 2rem;
+  --max-width: 210mm;
+  --shadow: 0 1px 3px rgba(0, 0, 0, 0.08);
+}
+
+/* Dark mode */
+[data-theme="dark"] {
+  --color-bg: #1a202c;
+  --color-paper: #2d3748;
+  --color-primary: #63b3ed;
+  --color-primary-light: #90cdf4;
+  --color-accent: #4299e1;
+  --color-text: #f7fafc;
+  --color-text-muted: #cbd5e0;
+  --color-border: #4a5568;
+  --color-sidebar-bg: #2d3748;
+  --color-sidebar-text: #e2e8f0;
+}
+
+/* ---------- Reset & Base ---------- */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  font-size: var(--font-size-base);
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  padding: var(--spacing-lg);
+  font-family: var(--font-sans);
+  line-height: var(--line-height);
+  color: var(--color-text);
+  background-color: var(--color-bg);
+  -webkit-font-smoothing: antialiased;
+}
+
+/* Skip link - visible on focus for accessibility */
+.skip-link {
+  position: absolute;
+  top: -100px;
+  left: var(--spacing-md);
+  padding: var(--spacing-sm) var(--spacing-md);
+  background: var(--color-primary);
+  color: white;
+  text-decoration: none;
+  z-index: 100;
+  border-radius: 4px;
+  transition: top 0.2s;
+}
+
+.skip-link:focus {
+  top: var(--spacing-md);
+}
+
+/* ---------- CV Container (Europass two-column on desktop) ---------- */
+.cv-container {
+  max-width: var(--max-width);
+  margin: 0 auto;
+  background: var(--color-paper);
+  box-shadow: var(--shadow);
+  border-radius: 4px;
+  overflow: hidden;
+}
+
+/* ---------- Header ---------- */
+.cv-header {
+  background: linear-gradient(135deg, var(--color-primary) 0%, var(--color-primary-light) 100%);
+  color: var(--color-sidebar-text);
+  padding: var(--spacing-xl);
+}
+
+.header-content {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--spacing-xl);
+  align-items: flex-start;
+  justify-content: space-between;
+}
+
+.header-left {
+  flex: 1;
+  min-width: 200px;
+}
+
+.full-name {
+  margin: 0 0 var(--spacing-sm);
+  font-size: clamp(1.5rem, 4vw, 2rem);
+  font-weight: 700;
+  letter-spacing: 0.02em;
+  line-height: 1.2;
+}
+
+.job-title {
+  margin: 0 0 var(--spacing-md);
+  font-size: 1rem;
+  opacity: 0.95;
+  font-weight: 500;
+}
+
+.contact-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--spacing-sm) var(--spacing-lg);
+}
+
+.contact-list li {
+  display: inline;
+}
+
+.contact-list a,
+.contact-list .location {
+  color: inherit;
+  text-decoration: none;
+  font-size: 0.9rem;
+  opacity: 0.95;
+}
+
+.contact-list a:hover {
+  text-decoration: underline;
+}
+
+.contact-list a:focus {
+  outline: 2px solid white;
+  outline-offset: 2px;
+}
+
+.header-right {
+  flex-shrink: 0;
+}
+
+.photo-placeholder {
+  width: 100px;
+  height: 100px;
+  min-width: 100px;
+  min-height: 100px;
+  background: rgba(255, 255, 255, 0.2);
+  border: 2px solid rgba(255, 255, 255, 0.4);
+  border-radius: 4px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.75rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+/* ---------- Main content ---------- */
+main {
+  padding: var(--spacing-xl);
+}
+
+/* ---------- Section titles (Europass style) ---------- */
+.section-title {
+  margin: 0 0 var(--spacing-md);
+  padding-bottom: var(--spacing-xs);
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: var(--color-primary);
+  border-bottom: 2px solid var(--color-primary);
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+
+[data-theme="dark"] .section-title {
+  color: var(--color-primary-light);
+  border-bottom-color: var(--color-primary-light);
+}
+
+/* ---------- Professional Summary ---------- */
+.summary-text {
+  margin: 0;
+  color: var(--color-text-muted);
+  font-size: 0.95rem;
+  max-width: 72ch;
+}
+
+/* ---------- Skills ---------- */
+.skills-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: var(--spacing-lg);
+}
+
+.skill-group {
+  margin: 0;
+}
+
+.skill-category {
+  margin: 0 0 var(--spacing-sm);
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: var(--color-text);
+}
+
+.skill-list {
+  margin: 0;
+  padding-left: 1.25rem;
+  font-size: 0.9rem;
+  color: var(--color-text-muted);
+}
+
+.skill-list li {
+  margin-bottom: var(--spacing-xs);
+}
+
+/* ---------- Work Experience ---------- */
+.experience-item {
+  margin-bottom: var(--spacing-lg);
+}
+
+.experience-item:last-child {
+  margin-bottom: 0;
+}
+
+.experience-header {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: var(--spacing-sm);
+  margin-bottom: var(--spacing-xs);
+}
+
+.experience-header .role {
+  margin: 0;
+  font-size: 1rem;
+  font-weight: 600;
+  color: var(--color-text);
+}
+
+.duration {
+  font-size: 0.85rem;
+  color: var(--color-text-muted);
+  white-space: nowrap;
+}
+
+.company {
+  margin: 0 0 var(--spacing-sm);
+  font-size: 0.9rem;
+  color: var(--color-text-muted);
+}
+
+.experience-list {
+  margin: 0;
+  padding-left: 1.25rem;
+  font-size: 0.9rem;
+  color: var(--color-text-muted);
+}
+
+.experience-list li {
+  margin-bottom: var(--spacing-xs);
+}
+
+/* ---------- Education ---------- */
+.education-item {
+  margin: 0;
+}
+
+.education-item .degree {
+  margin: 0 0 var(--spacing-xs);
+  font-size: 1rem;
+  font-weight: 600;
+  color: var(--color-text);
+}
+
+.education-item .institution,
+.education-item .location-edu,
+.education-item .graduation {
+  margin: 0;
+  font-size: 0.9rem;
+  color: var(--color-text-muted);
+}
+
+/* ---------- Projects ---------- */
+.project-item {
+  margin-bottom: var(--spacing-lg);
+}
+
+.project-item:last-child {
+  margin-bottom: 0;
+}
+
+.project-title {
+  margin: 0 0 var(--spacing-xs);
+  font-size: 1rem;
+  font-weight: 600;
+  color: var(--color-text);
+}
+
+.project-desc,
+.project-tech {
+  margin: 0 0 var(--spacing-sm);
+  font-size: 0.9rem;
+  color: var(--color-text-muted);
+}
+
+.project-tech {
+  font-size: 0.85rem;
+}
+
+/* ---------- Certifications ---------- */
+.cert-list {
+  margin: 0;
+  padding-left: 1.25rem;
+  font-size: 0.9rem;
+  color: var(--color-text-muted);
+}
+
+.cert-list li {
+  margin-bottom: var(--spacing-xs);
+}
+
+/* ---------- Languages ---------- */
+.language-list {
+  margin: 0;
+  padding-left: 1.25rem;
+  font-size: 0.9rem;
+  color: var(--color-text-muted);
+}
+
+.language-list .lang-name {
+  font-weight: 600;
+  color: var(--color-text);
+}
+
+/* ---------- Footer ---------- */
+.cv-footer {
+  padding: var(--spacing-lg) var(--spacing-xl);
+  background: var(--color-border);
+  border-top: 1px solid var(--color-border);
+}
+
+[data-theme="dark"] .cv-footer {
+  background: rgba(0, 0, 0, 0.2);
+  border-top-color: var(--color-border);
+}
+
+.footer-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--spacing-md);
+  justify-content: center;
+}
+
+/* ---------- Buttons ---------- */
+.btn {
+  padding: var(--spacing-sm) var(--spacing-lg);
+  font-family: inherit;
+  font-size: 0.9rem;
+  font-weight: 600;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background 0.2s, color 0.2s;
+}
+
+.btn:focus {
+  outline: 2px solid var(--color-primary);
+  outline-offset: 2px;
+}
+
+.btn-print {
+  background: var(--color-primary);
+  color: white;
+}
+
+.btn-print:hover {
+  background: var(--color-primary-light);
+}
+
+.btn-pdf {
+  background: var(--color-accent);
+  color: white;
+}
+
+.btn-pdf:hover {
+  filter: brightness(1.1);
+}
+
+.btn-theme {
+  background: var(--color-text-muted);
+  color: var(--color-paper);
+}
+
+.btn-theme:hover {
+  background: var(--color-text);
+}
+
+/* ---------- Section spacing ---------- */
+.cv-section {
+  margin-bottom: var(--spacing-xl);
+}
+
+.cv-section:last-of-type {
+  margin-bottom: 0;
+}
+
+/* ---------- Responsive: Mobile ---------- */
+@media (max-width: 600px) {
+  body {
+    padding: var(--spacing-sm);
+  }
+
+  .cv-header {
+    padding: var(--spacing-lg);
+  }
+
+  .header-content {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .header-right {
+    order: -1;
+    align-self: center;
+  }
+
+  main {
+    padding: var(--spacing-lg);
+  }
+
+  .full-name {
+    font-size: 1.35rem;
+  }
+
+  .contact-list {
+    flex-direction: column;
+    gap: var(--spacing-xs);
+  }
+
+  .skills-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .experience-header {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .cv-footer {
+    padding: var(--spacing-md);
+  }
+
+  .footer-actions {
+    flex-direction: column;
+  }
+
+  .btn {
+    width: 100%;
+  }
+}
+
+/* ---------- Print styles (A4, Europass) ---------- */
+@media print {
+  :root {
+    --color-bg: #fff;
+    --color-paper: #fff;
+  }
+
+  body {
+    background: white;
+    padding: 0;
+    color: #1a202c;
+  }
+
+  .skip-link,
+  .cv-footer,
+  .btn-theme {
+    display: none !important;
+  }
+
+  .cv-container {
+    max-width: 100%;
+    box-shadow: none;
+    border-radius: 0;
+  }
+
+  .cv-header {
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
+    background: #1e3a5f !important;
+    color: #f7fafc !important;
+  }
+
+  .cv-header a {
+    color: #f7fafc !important;
+  }
+
+  .section-title {
+    color: #1e3a5f !important;
+    border-bottom-color: #1e3a5f !important;
+  }
+
+  main {
+    padding: 1rem 1.5rem;
+  }
+
+  .cv-section {
+    break-inside: avoid;
+    page-break-inside: avoid;
+  }
+
+  .experience-item,
+  .project-item {
+    break-inside: avoid;
+    page-break-inside: avoid;
+  }
+
+  a[href]::after {
+    content: none;
+  }
+
+  @page {
+    size: A4;
+    margin: 15mm;
+  }
+}
